@@ -518,9 +518,10 @@ def updateBows():
         screen.create_image(340, 150, image = hearts, anchor = CENTER)
         
 #Whenever user clicks...
-def mouseClickHandler( event ):
+def mouseClickHandler( event ): 
     global bows, accessories, popups, introScreen, inventoryScreen, displayScreen, ruleScreen, xMouse, yMouse, fieldScreen, colours
-    
+    global flowerXmove, squarex, inframel, inframer
+
     global flowers, flowersstat, flowercount, flowertypecount
     xMouse = event.x
     yMouse = event.y
@@ -662,6 +663,16 @@ def mouseClickHandler( event ):
             screen.update()
             popups = True
 
+        if inframel == True and xMouse >= 33 and xMouse <= 63 and yMouse >= 285 and yMouse <= 310:
+            flowerXmove = 10
+
+        elif inframer == True and xMouse >= 737 and xMouse <= 767 and yMouse >= 285 and yMouse <= 310:
+            flowerXmove = -10
+
+def mouseReleaseHandler( event ):
+    global flowerXmove
+
+    flowerXmove = 0
 
 def keyDownHandler( event ):
     #code to run on key press...
@@ -726,6 +737,8 @@ root.after( 0, runGame )
 
 #Connecting user inputs to functions
 screen.bind( "<Button-1>", mouseClickHandler )
+screen.bind("<ButtonRelease-1>", mouseReleaseHandler)
+
 screen.bind( "<Key>", keyDownHandler )
 screen.bind( "<KeyRelease>", keyReleaseHandler )
 
