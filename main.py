@@ -14,7 +14,7 @@ from DecimalToHex import *
 
 root = Tk()
 screen = Canvas(root, width=800, height=600, background="#D9EEFF")
-
+screen.pack()
 
 def setInitialValues():
     #global variables...
@@ -256,11 +256,11 @@ def drawFieldScreen():
     if flowersstat[8] == True:
         L3 = screen.create_image(-915+squarex, 540, image = SLilyDisplay, anchor = W)
     if flowersstat[9] == True:
-        La1 = screen.create_image(-830+squarex, 500, image = SLavendarDisplay, anchor = W)
+        La1 = screen.create_image(-790+squarex, 500, image = SLavendarDisplay, anchor = W)
     if flowersstat[10] == True:
-        La2 = screen.create_image(820+squarex, 500, image = SLavendarDisplay, anchor = W)
+        La2 = screen.create_image(860+squarex, 500, image = SLavendarDisplay, anchor = W)
     if flowersstat[11] == True:
-        La3 = screen.create_image(-40+squarex, 500, image = SLavendarDisplay, anchor = W)
+        La3 = screen.create_image(squarex, 500, image = SLavendarDisplay, anchor = W)
     if flowersstat[12] == True:
         Lotv1 = screen.create_image(1120+squarex, 530, image = SLilyoftheValleyDisplay, anchor = W)
     if flowersstat[13] == True:
