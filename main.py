@@ -20,7 +20,7 @@ def setInitialValues():
     #global variables...
     global BlueTulipDisplay1, BlueTulipDisplay2, PinkTulipDisplay1, PinkTulipDisplay2, SunflowerDisplay1, SunflowerDisplay2, LilyDisplay1, LilyDisplay2, LilyoftheValleyDisplay1, LilyoftheValleyDisplay2, LavendarDisplay1, LavendarDisplay2, BBDisplay1, BBDisplay2, displayScreen, SBlueTulipDisplay, SPinkTulipDisplay, SLilyoftheValleyDisplay, SLavendarDisplay, SLilyDisplay, SSunflowerDisplay, SBBDisplay, BBDisplay, SunflowerDisplay, LilyDisplay, LavendarDisplay, LilyoftheValleyDisplay, BlueTulipDisplay, PinkTulipDisplay
   
-    global BouquetBuilderDisplay, introScreen
+    global BouquetBuilderDisplay, introScreen, finaldisplayScreen
     
     global fieldScreen, flowerXmove, flowers, flowertypecount, hearts
     
@@ -89,6 +89,7 @@ def setInitialValues():
     #Variables to keep track of which screen should be shown
     introScreen = True
     displayScreen = False
+    finaldisplayScreen = False
     ruleScreen = False
     fieldScreen = False
     inventoryScreen = False
@@ -378,8 +379,59 @@ def drawInventoryScreen():
 
 
 #Drawing the Bouquet
-def drawDisplayBouquet():
+def drawDisplayBouquet(shift, shiftup):
     global flowertypecount
+
+    #Check how many of each flower is picked, display which ones are
+        #If more than one, use a different image so it doesn't overlap
+    if flowertypecount[0] >= 1:
+        BB = screen.create_image(216+shift, 300+shiftup, image = BBDisplay, anchor = CENTER )
+    if flowertypecount[0] >= 2:
+        BB1 = screen.create_image(205+shift, 300+shiftup, image = BBDisplay1, anchor = CENTER )
+    if flowertypecount[0] >= 3:
+        BB2 = screen.create_image(228+shift, 290+shiftup, image = BBDisplay2, anchor = CENTER )
+    if flowertypecount[3] >= 1:
+        La = screen.create_image(220+shift, 320+shiftup, image = LavendarDisplay, anchor = CENTER)
+    if flowertypecount[3] >= 2:
+        La1 = screen.create_image(210+shift, 335+shiftup, image = LavendarDisplay1, anchor = CENTER)
+    if flowertypecount[3] >= 3:
+        La2 = screen.create_image(210+shift, 335+shiftup, image = LavendarDisplay2, anchor = CENTER)
+    if flowertypecount[4] >= 1:
+        Lotv = screen.create_image(225+shift, 316+shiftup, image = LilyoftheValleyDisplay, anchor = CENTER )
+    if flowertypecount[4] >= 2:
+        Lotv1 = screen.create_image(240+shift, 320+shiftup, image = LilyoftheValleyDisplay1, anchor = CENTER )
+    if flowertypecount[4] >= 3:
+        Lotv2 = screen.create_image(228+shift, 320+shiftup, image = LilyoftheValleyDisplay2, anchor = CENTER )
+    if flowertypecount[2] >= 1:
+        L = screen.create_image(222+shift, 327+shiftup, image = LilyDisplay, anchor = CENTER )
+    if flowertypecount[2] >= 2:
+        L1 = screen.create_image(202+shift, 336+shiftup, image = LilyDisplay1, anchor = CENTER )
+    if flowertypecount[2] >= 3:
+        L2 = screen.create_image(212+shift, 346+shiftup, image = LilyDisplay2, anchor = CENTER )
+    if flowertypecount[1] >= 1:
+        S = screen.create_image(220+shift, 330+shiftup, image = SunflowerDisplay, anchor = CENTER )
+    if flowertypecount[1] >= 2:
+        S1 = screen.create_image(238+shift, 334+shiftup, image = SunflowerDisplay2, anchor = CENTER )
+    if flowertypecount[1] >= 3:
+        S2 = screen.create_image(228+shift, 340+shiftup, image = SunflowerDisplay1, anchor = CENTER )
+    if flowertypecount[5] >= 1:
+        BT1 = screen.create_image(215+shift, 350+shiftup, image = BlueTulipDisplay1, anchor = CENTER )
+    if flowertypecount[5] >= 2:
+        BT = screen.create_image(233+shift, 370+shiftup, image = BlueTulipDisplay, anchor = CENTER )
+    if flowertypecount[5] >= 3:
+        BT2 = screen.create_image(200+shift, 370+shiftup, image = BlueTulipDisplay2, anchor = CENTER )
+    if flowertypecount[6] >= 1:
+        PT2 = screen.create_image(243+shift, 375+shiftup, image = PinkTulipDisplay2, anchor = CENTER )
+    if flowertypecount[6] >= 2:
+        PT1 = screen.create_image(223+shift, 370+shiftup, image = PinkTulipDisplay1, anchor = CENTER )
+    if flowertypecount[6] >= 3:
+        PT = screen.create_image(207+shift, 370+shiftup, image = PinkTulipDisplay, anchor = CENTER )
+
+    #Restart button
+    screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
+    screen.create_text(695, 555, text = "NEXT", fill ="#FF9195", font = ("Arial", 13))
+
+def displaySelection():
     #The selection pallets
     i = 20
     screen.create_polygon(500, 100-i, 520, 100-i, 730, 100-i, 750, 100-i, 750, 120-i, 750, 260-i, 750, 280-i, 730, 280-i, 520, 280-i, 500, 280-i, 500, 260-i, 500, 120-i, fill = "#80664B", smooth = True, outline = "")
@@ -413,54 +465,6 @@ def drawDisplayBouquet():
     sparkle = screen.create_polygon(524, 450, 538, 443, 544, 430, 550, 443, 564, 450, 550, 457, 544, 470, 538, 457, fill = "#f5c242")
     heart = screen.create_polygon(621, 438, 624, 442, 627, 438, 634, 435, 644, 440, 639, 457, 624, 470, 609, 457, 604, 440, 614, 435, smooth = True, fill = "Pink")
 
-    #Check how many of each flower is picked, display which ones are
-        #If more than one, use a different image so it doesn't overlap
-    if flowertypecount[0] >= 1:
-        BB = screen.create_image(216, 300, image = BBDisplay, anchor = CENTER )
-    if flowertypecount[0] >= 2:
-        BB1 = screen.create_image(205, 300, image = BBDisplay1, anchor = CENTER )
-    if flowertypecount[0] >= 3:
-        BB2 = screen.create_image(228, 290, image = BBDisplay2, anchor = CENTER )
-    if flowertypecount[3] >= 1:
-        La = screen.create_image(220, 320, image = LavendarDisplay, anchor = CENTER)
-    if flowertypecount[3] >= 2:
-        La1 = screen.create_image(210, 335, image = LavendarDisplay1, anchor = CENTER)
-    if flowertypecount[3] >= 3:
-        La2 = screen.create_image(210, 335, image = LavendarDisplay2, anchor = CENTER)
-    if flowertypecount[4] >= 1:
-        Lotv = screen.create_image(225, 316, image = LilyoftheValleyDisplay, anchor = CENTER )
-    if flowertypecount[4] >= 2:
-        Lotv1 = screen.create_image(240, 320, image = LilyoftheValleyDisplay1, anchor = CENTER )
-    if flowertypecount[4] >= 3:
-        Lotv2 = screen.create_image(228, 320, image = LilyoftheValleyDisplay2, anchor = CENTER )
-    if flowertypecount[2] >= 1:
-        L = screen.create_image(222, 327, image = LilyDisplay, anchor = CENTER )
-    if flowertypecount[2] >= 2:
-        L1 = screen.create_image(202, 336, image = LilyDisplay1, anchor = CENTER )
-    if flowertypecount[2] >= 3:
-        L2 = screen.create_image(212, 346, image = LilyDisplay2, anchor = CENTER )
-    if flowertypecount[1] >= 1:
-        S = screen.create_image(220, 330, image = SunflowerDisplay, anchor = CENTER )
-    if flowertypecount[1] >= 2:
-        S1 = screen.create_image(238, 334, image = SunflowerDisplay2, anchor = CENTER )
-    if flowertypecount[1] >= 3:
-        S2 = screen.create_image(228, 340, image = SunflowerDisplay1, anchor = CENTER )
-    if flowertypecount[5] >= 1:
-        BT1 = screen.create_image(215, 350, image = BlueTulipDisplay1, anchor = CENTER )
-    if flowertypecount[5] >= 2:
-        BT = screen.create_image(233, 370, image = BlueTulipDisplay, anchor = CENTER )
-    if flowertypecount[5] >= 3:
-        BT2 = screen.create_image(200, 370, image = BlueTulipDisplay2, anchor = CENTER )
-    if flowertypecount[6] >= 1:
-        PT2 = screen.create_image(243, 375, image = PinkTulipDisplay2, anchor = CENTER )
-    if flowertypecount[6] >= 2:
-        PT1 = screen.create_image(223, 370, image = PinkTulipDisplay1, anchor = CENTER )
-    if flowertypecount[6] >= 3:
-        PT = screen.create_image(207, 370, image = PinkTulipDisplay, anchor = CENTER )
-
-    #Restart button
-    screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
-    screen.create_text(695, 555, text = "RESTART", fill ="#FF9195", font = ("Arial", 13))
 
 #Updating objects (left + right on Field Screen)
 def updateObjects():
@@ -502,24 +506,30 @@ def updateColours():
         screen.create_rectangle(0, 0 ,800, 600, fill = "#DCF6D0", outline = "" )
     
 #Update the general accessories like bows, sparkles and heart
-def updateBows():
+def updateBows(shift, shiftup):
     #If the icon is clicked, the variable will be True, thus display it
     if bows[0] == True:
-        screen.create_image(223, 460, image = Bow1L, anchor = CENTER)
+        screen.create_image(223+shift, 460+shiftup, image = Bow1L, anchor = CENTER)
     elif bows[1] == True:
-        screen.create_image(223, 460, image = Bow2L, anchor = CENTER)
+        screen.create_image(223+shift, 460+shiftup, image = Bow2L, anchor = CENTER)
     elif bows[2] == True:
-        screen.create_image(223, 465, image = Bow3L, anchor = CENTER)
+        screen.create_image(223+shift, 465+shiftup, image = Bow3L, anchor = CENTER)
 
     if accessories[0] == True:
         for i in range(100):
-            screen.create_oval(xsparkle[i], ysparkle[i], xsparkle[i]+sizesparkle[i], ysparkle[i]+sizesparkle[i], fill = "#fffd21", outline = "White", width = 1)
+            screen.create_oval(xsparkle[i]+shift, ysparkle[i]+shiftup, xsparkle[i]+sizesparkle[i]+shift, ysparkle[i]+sizesparkle[i]+shiftup, fill = "#fffd21", outline = "White", width = 1)
     if accessories[1] == True:
-        screen.create_image(340, 150, image = hearts, anchor = CENTER)
-        
+        screen.create_image(340+shift, 150+shiftup, image = hearts, anchor = CENTER)
+
+def finalScreen():
+    #Next Screen Button
+    screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
+    screen.create_text(695, 555, text = "RESTART", fill ="#FF9195", font = ("Arial", 13))
+
+
 #Whenever user clicks...
 def mouseClickHandler( event ): 
-    global bows, accessories, popups, introScreen, inventoryScreen, displayScreen, ruleScreen, xMouse, yMouse, fieldScreen, colours
+    global bows, accessories, popups, introScreen, inventoryScreen, displayScreen, ruleScreen, xMouse, yMouse, fieldScreen, colours, finaldisplayScreen
     global flowerXmove, squarex, inframel, inframer
 
     global flowers, flowersstat, flowercount, flowertypecount
@@ -592,8 +602,13 @@ def mouseClickHandler( event ):
             elif 672 <= xMouse and 737 >= xMouse:
                 colours = [False, False, False, False, False, True]
         elif 630 <= xMouse and 760 >= xMouse and 540 <= yMouse and 570 >= yMouse:
-            runGame()
+            finaldisplayScreen = True
+            displayScreen = False
     
+    elif finaldisplayScreen == True:
+        if 630 <= xMouse and 760 >= xMouse and 540 <= yMouse and 570 >= yMouse:
+            runGame()
+
     #Change parameter depending on which group of 3 (some flowers are less wide)
     if fieldScreen == True:
         #Get the key and value pairs of flower coordinates
@@ -702,21 +717,32 @@ def runGame():
             sleep(0.03)
             screen.delete("all")
         elif displayScreen == True:
-            drawDisplayBouquet()
-            updateBows()
+            drawDisplayBouquet(0, 0)
+            updateBows(0, 0)
+            displaySelection()
             
             screen.update()
             sleep(0.03)
             screen.delete("all")
             updateColours()  
-            
+        
+        elif finaldisplayScreen == True:
+            drawDisplayBouquet(170, -30)
+            finalScreen()
+            updateBows(170, -30)
+
+            screen.update()
+            sleep(0.03)
+            screen.delete("all")
+            updateColours()
+
 
         elif fieldScreen == True:
             drawFieldScreen()
         
             screen.update()
             sleep(0.03)
-            screen.delete("all")
+            screen.delete("all") 
             updateObjects()  
         
         elif inventoryScreen == True:
@@ -731,6 +757,7 @@ def runGame():
             screen.update()
             sleep(0.03)
             screen.delete("all")
+        
 
 #Call the runGame function
 root.after( 0, runGame )
