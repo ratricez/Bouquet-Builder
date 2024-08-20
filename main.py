@@ -24,7 +24,7 @@ def setInitialValues():
     
     global fieldScreen, flowerXmove, flowers, flowertypecount, hearts
     
-    global ruleScreen, inventoryScreen, xsparkle, ysparkle, sizesparkle
+    global ruleScreen, inventoryScreen, xsparkle, ysparkle, sizesparkle, textt
     
     global colours, popups, Bow1, Bow2, Bow3, Bow1L, Bow2L, Bow3L, bows, cancel, accessories
     
@@ -105,6 +105,7 @@ def setInitialValues():
     inframer = True
     squaretest = 0
     popups = True
+    textt = False
     
     #Gets random x and y values + size for sparkle accessory
     xsparkle = []
@@ -136,8 +137,7 @@ def setInitialValues():
         grassheight.append(uniform(18, 25))
         grasscolour.append(grasscolours[randint(0, 5)])
         flowercolour.append(flowercolours[randint(0, 4)])
-
-        
+    
 
 
 #Intro Screen
@@ -466,9 +466,37 @@ def displaySelection():
     heart = screen.create_polygon(621, 438, 624, 442, 627, 438, 634, 435, 644, 440, 639, 457, 624, 470, 609, 457, 604, 440, 614, 435, smooth = True, fill = "Pink")
 
 
+
+#Text Input
+def text():
+    global message
+    entry = Entry(root, width=20)
+    entry.pack(pady=10)
+
+    global textt
+    def display_text():
+        global message
+        # Get the text from the Entry widget
+        message = entry.get()
+        # Hide the Entry widget
+        entry.pack_forget()
+        # Optionally, hide the button as well
+        button.pack_forget()
+
+    # Create a Button to trigger the display_text function
+    button = Button(root, text="Submit", command=display_text)
+    button.pack(pady=10)
+    textt = True
+
+def displaytext():
+    global message
+    # Use create_text to display the text on the Canvas
+    words = screen.create_text(400, 500, text=message, font=("Comic Sans MS", 16), fill="black", justify=CENTER)
+
+
 #Updating objects (left + right on Field Screen)
 def updateObjects():
-    global squarex, squarey, inframel, inframer
+    global squarex, inframel, inframer
     
     #While you are anywhere that isn't the end of screen, move
     if squarex < 1000 and squarex > -1000:
@@ -706,6 +734,7 @@ def keyReleaseHandler( event ):
     flowerXmove = 0
 
 def runGame():
+    global textt
     #Evertime runGame is called, set the intial values
     setInitialValues() 
     
@@ -720,7 +749,9 @@ def runGame():
             drawDisplayBouquet(0, 0)
             updateBows(0, 0)
             displaySelection()
-            
+            if textt == False:
+                text()
+
             screen.update()
             sleep(0.03)
             screen.delete("all")
@@ -729,6 +760,8 @@ def runGame():
         elif finaldisplayScreen == True:
             drawDisplayBouquet(170, -30)
             finalScreen()
+            displaytext()
+
             updateBows(170, -30)
 
             screen.update()
