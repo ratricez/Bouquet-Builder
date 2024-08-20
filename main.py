@@ -143,14 +143,14 @@ def setInitialValues():
 #Intro Screen
 def drawIntroScreen():
     title = screen.create_image(400, 250, image = BouquetBuilderDisplay, anchor = CENTER)
-    slogan = screen.create_text(400, 315, text = "~make the prettiest bouquets~", fill = "#FF9195", font = ("Arial", 17))
+    slogan = screen.create_text(400, 315, text = "~make the prettiest bouquets~", fill = "#FF9195", font = ("Comic Sans MS", 17))
     
     #Buttons
     screen.create_rectangle(220, 350, 380, 390, fill = "#FAF3E3")
-    screen.create_text(300, 370, text = "PLAY", fill = "#FF9195", font = ("Arial", 17))
+    screen.create_text(300, 370, text = "PLAY", fill = "#FF9195", font = ("Comic Sans MS", 17))
     
     screen.create_rectangle(420, 350, 580, 390, fill = "#FAF3E3")
-    screen.create_text(500, 370, text = "RULES", fill = "#FF9195", font = ("Arial", 17))
+    screen.create_text(500, 370, text = "RULES", fill = "#FF9195", font = ("Comic Sans MS", 17))
 
     #Grass
     screen.create_rectangle(0,500, 800, 600, fill = "#2d8504", outline = "")
@@ -234,8 +234,8 @@ def drawFieldScreen():
     grass = screen.create_image(400+squarex, 450, image = GrassDisplay)
 
     #Arrows
-    screen.create_text(50, 300, text = "<", fill ="#FF9195", font = ("Arial", 35))
-    screen.create_text(750, 300, text = ">", fill ="#FF9195", font = ("Arial", 35))
+    screen.create_text(50, 300, text = "<", fill ="#FF9195", font = ("Comic Sans MS", 35))
+    screen.create_text(750, 300, text = ">", fill ="#FF9195", font = ("Comic Sans MS", 35))
 
     #Check if each flower still exists (True), if it does, display it
     if flowersstat[0] == True: 
@@ -292,12 +292,12 @@ def drawFieldScreen():
     }
     
     #Total display
-    screen.create_text(700, 70, text = "Total:", fill ="#FF9195", font = ("Arial", 20))
-    screen.create_text(750, 70, text = str(flowercount), fill ="#FF9195", font = ("Arial", 20))
+    screen.create_text(700, 70, text = "Total:", fill ="#FF9195", font = ("Comic Sans MS", 20))
+    screen.create_text(750, 70, text = str(flowercount), fill ="#FF9195", font = ("Comic Sans MS", 20))
     
     #Next Screen Button
     screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
-    screen.create_text(695, 555, text = "NEXT", fill ="#FF9195", font = ("Arial", 13))
+    screen.create_text(695, 555, text = "NEXT", fill ="#FF9195", font = ("Comic Sans MS", 13))
 
     #Inventory Button
     screen.create_rectangle(50, 50, 100, 100, fill = "#FAF3E3")
@@ -352,30 +352,30 @@ def drawInventoryScreen():
     screen.create_rectangle(50, 50, 100, 100, fill = "#FAF3E3")
     
     #X
-    screen.create_text(75, 75, text = "X", fill = "Black", font = ("Arial", 30))
+    screen.create_text(75, 75, text = "X", fill = "Black", font = ("Comic Sans MS", 30))
 
 
     #Flowers + how many have been picked up
     screen.create_image(230, 150, image = SBBDisplay, anchor = CENTER)
-    screen.create_text(270, 240, text = str(flowertypecount[0])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(270, 240, text = str(flowertypecount[0])+"x", fill = "Black", font = ("Comic Sans MS", 20))
     
     screen.create_image(410, 150, image = SSunflowerDisplay, anchor = CENTER)
-    screen.create_text(450, 240, text = str(flowertypecount[1])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(450, 240, text = str(flowertypecount[1])+"x", fill = "Black", font = ("Comic Sans MS", 20))
 
     screen.create_image(600, 175, image = SLilyDisplay, anchor = CENTER)
-    screen.create_text(640, 240, text = str(flowertypecount[2])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(640, 240, text = str(flowertypecount[2])+"x", fill = "Black", font = ("Comic Sans MS", 20))
     
     screen.create_image(130, 370, image = SLavendarDisplay, anchor = CENTER)
-    screen.create_text(160, 460, text = str(flowertypecount[3])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(160, 460, text = str(flowertypecount[3])+"x", fill = "Black", font = ("Comic Sans MS", 20))
     
     screen.create_image(325, 395, image = SLilyoftheValleyDisplay, anchor = CENTER)
-    screen.create_text(375, 460, text = str(flowertypecount[4])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(375, 460, text = str(flowertypecount[4])+"x", fill = "Black", font = ("Comic Sans MS", 20))
 
     screen.create_image(505, 410, image = SBlueTulipDisplay, anchor = CENTER)
-    screen.create_text(535, 460, text = str(flowertypecount[5])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(535, 460, text = str(flowertypecount[5])+"x", fill = "Black", font = ("Comic Sans MS", 20))
     
     screen.create_image(660, 405, image = SPinkTulipDisplay, anchor = CENTER)
-    screen.create_text(710, 460, text = str(flowertypecount[6])+"x", fill = "Black", font = ("Arial", 20))
+    screen.create_text(710, 460, text = str(flowertypecount[6])+"x", fill = "Black", font = ("Comic Sans MS", 20))
 
 
 #Drawing the Bouquet
@@ -429,7 +429,7 @@ def drawDisplayBouquet(shift, shiftup):
 
     #Restart button
     screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
-    screen.create_text(695, 555, text = "NEXT", fill ="#FF9195", font = ("Arial", 13))
+    screen.create_text(695, 555, text = "NEXT", fill ="#FF9195", font = ("Comic Sans MS", 13))
 
 def displaySelection():
     #The selection pallets
@@ -509,7 +509,7 @@ def text():
 
 def displaytext():
     global message
-    # Use create_text to display the text on the Canvas
+    # Use create_text to display the text on the Canvas 
     words = screen.create_text(400, 500, text=message, font=("Comic Sans MS", 16), fill="black", justify=CENTER)
 
 
@@ -571,7 +571,7 @@ def updateBows(shift, shiftup):
 def finalScreen():
     #Next Screen Button
     screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
-    screen.create_text(695, 555, text = "RESTART", fill ="#FF9195", font = ("Arial", 13))
+    screen.create_text(695, 555, text = "RESTART", fill ="#FF9195", font = ("Comic Sans MS", 13))
 
 
 #Whenever user clicks...
@@ -716,7 +716,7 @@ def mouseClickHandler( event ):
 
             #Print the message
             popup = screen.create_rectangle(200, 250, 600, 350, fill = "White")
-            popuptext = screen.create_text(400, 300, text = "Bouquet is too full \nPlease go to next screen", fill = "#FF9195", font = ("Arial", 16))
+            popuptext = screen.create_text(400, 300, text = "Bouquet is too full \nPlease go to next screen", fill = "#FF9195", font = ("Comic Sans MS", 16))
 
             #Sleep the screen so they can't press anything momentarily
             screen.update()
