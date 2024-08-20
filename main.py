@@ -469,23 +469,42 @@ def displaySelection():
 
 #Text Input
 def text():
-    global message
-    entry = Entry(root, width=20)
-    entry.pack(pady=10)
+    global message, entry, buttonsubmit, textt
 
-    global textt
+    def on_entry_click(event):
+        # Hide the placeholder text when the user clicks on the Entry
+        if entry.get() == "User input":
+            entry.delete(0, END)
+            entry.config(fg='black')
+
+    def on_focusout(event):
+        # Show the placeholder text if the Entry is empty when focus is lost
+        if entry.get() == "":
+            entry.insert(0, "User input")
+            entry.config(fg='grey')
+
+    entry = Entry(root, width=20, fg='grey')
+    entry.insert(0, "User input")
+    entry.pack(pady=10)
+    
+    # Bind events to the Entry widget
+    entry.bind("<FocusIn>", on_entry_click)
+    entry.bind("<FocusOut>", on_focusout)
+    
+    message = ""   
+
     def display_text():
         global message
         # Get the text from the Entry widget
         message = entry.get()
-        # Hide the Entry widget
+        if message == "User input":
+            message = ""  # Clear the placeholder if no input was provided
+        # Hide the Entry widget and button
         entry.pack_forget()
-        # Optionally, hide the button as well
-        button.pack_forget()
+        buttonsubmit.pack_forget()
 
-    # Create a Button to trigger the display_text function
-    button = Button(root, text="Submit", command=display_text)
-    button.pack(pady=10)
+    buttonsubmit = Button(root, text="Submit", command=display_text)
+    buttonsubmit.pack(pady=10)
     textt = True
 
 def displaytext():
@@ -734,7 +753,7 @@ def keyReleaseHandler( event ):
     flowerXmove = 0
 
 def runGame():
-    global textt
+    global textt, entry, buttonsubmit
     #Evertime runGame is called, set the intial values
     setInitialValues() 
     
@@ -758,6 +777,11 @@ def runGame():
             updateColours()  
         
         elif finaldisplayScreen == True:
+            if entry.winfo_ismapped() or buttonsubmit.winfo_ismapped():
+                entry.pack_forget()
+                buttonsubmit.pack_forget()
+
+
             drawDisplayBouquet(170, -30)
             finalScreen()
             displaytext()
