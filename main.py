@@ -10,6 +10,7 @@ from math import *  #only if you need sqrt, pi, sin, cos or tan
 from time import *
 from random import *
 from DecimalToHex import *
+from tkinter import colorchooser
 
 
 root = Tk()
@@ -438,12 +439,12 @@ def displaySelection():
     screen.create_polygon(500, 300+i, 520, 300+i, 730, 300+i, 750, 300+i, 750, 320+i, 750, 460+i, 750, 480+i, 730, 480+i, 520, 480+i, 500, 480+i, 500, 460+i, 500, 320+i, fill = "#80664B", smooth = True, outline = "")
 
     #Colour selector
-    screen.create_polygon(512, 100, 522, 100, 567, 100, 577, 100, 577, 110, 577, 150, 577, 160, 567, 160, 522, 160, 512, 160, 512, 150, 512, 110, fill = "#DCDEDD", outline = "", smooth = True)
-    screen.create_polygon(512+80, 100, 522+80, 100, 567+80, 100, 577+80, 100, 577+80, 110, 577+80, 150, 577+80, 160, 567+80, 160, 522+80, 160, 512+80, 160, 512+80, 150, 512+80, 110, fill = "#FAF3E3", outline = "", smooth = True)
+    screen.create_polygon(512, 100, 522, 100, 567, 100, 577, 100, 577, 110, 577, 150, 577, 160, 567, 160, 522, 160, 512, 160, 512, 150, 512, 110, fill = "#FFEEF9", outline = "", smooth = True)
+    screen.create_polygon(512+80, 100, 522+80, 100, 567+80, 100, 577+80, 100, 577+80, 110, 577+80, 150, 577+80, 160, 567+80, 160, 522+80, 160, 512+80, 160, 512+80, 150, 512+80, 110, fill = "#f5eba2", outline = "", smooth = True)
     screen.create_polygon(512+160, 100, 522+160, 100, 567+160, 100, 577+160, 100, 577+160, 110, 577+160, 150, 577+160, 160, 567+160, 160, 522+160, 160, 512+160, 160, 512+160, 150, 512+160, 110, fill = "#D9EEFF", outline = "", smooth = True)
 
-    screen.create_polygon(512, 180, 522, 180, 567, 180, 577, 180, 577, 190, 577, 230, 577, 240, 567, 240, 522, 240, 512, 240, 512, 230, 512, 190, fill = "#FFEEF9", outline = "", smooth = True)
-    screen.create_polygon(512+80, 180, 522+80, 180, 567+80, 180, 577+80, 180, 577+80, 190, 577+80, 230, 577+80, 240, 567+80, 240, 522+80, 240, 512+80, 240, 512+80, 230, 512+80, 190, fill = "#f5eba2", outline = "", smooth = True)
+    screen.create_polygon(512, 180, 522, 180, 567, 180, 577, 180, 577, 190, 577, 230, 577, 240, 567, 240, 522, 240, 512, 240, 512, 230, 512, 190, fill = "#DCDEDD", outline = "", smooth = True)
+    screen.create_polygon(512+80, 180, 522+80, 180, 567+80, 180, 577+80, 180, 577+80, 190, 577+80, 230, 577+80, 240, 567+80, 240, 522+80, 240, 512+80, 240, 512+80, 230, 512+80, 190, fill = "#FAF3E3", outline = "", smooth = True)
     screen.create_polygon(512+160, 180, 522+160, 180, 567+160, 180, 577+160, 180, 577+160, 190, 577+160, 230, 577+160, 240, 567+160, 240, 522+160, 240, 512+160, 240, 512+160, 230, 512+160, 190, fill = "#DCF6D0", outline = "", smooth = True)
 
     
@@ -540,17 +541,17 @@ def updateObjects():
 #Update the background colours for display screen (based on selection by user)
 def updateColours():
     if colours[0] == True:
-        screen.create_rectangle(0, 0 ,800, 600, fill = "#DCDEDD", outline = "" )
+        screen.create_rectangle(0, 0 ,800, 600, fill = "#FFEEF9", outline = "" )
     elif colours[1] == True:
-        screen.create_rectangle(0, 0 ,800, 600, fill = "#FAF3E3", outline = "" )
+        screen.create_rectangle(0, 0 ,800, 600, fill = "#f5eba2", outline = "" )
     elif colours[2] == True:
         screen.create_rectangle(0, 0 ,800, 600, fill = "#D9EEFF", outline = "" )
     elif colours[3] == True:
-        screen.create_rectangle(0, 0 ,800, 600, fill = "#FFEEF9", outline = "" )
+        screen.create_rectangle(0, 0 ,800, 600, fill = "#DCDEDD", outline = "" )
     elif colours[4] == True:
-        screen.create_rectangle(0, 0 ,800, 600, fill = "#f5eba2", outline = "" )
+        screen.create_rectangle(0, 0 ,800, 600, fill = "#FAF3E3", outline = "" )
     elif colours[5] == True:
-        screen.create_rectangle(0, 0 ,800, 600, fill = "#DCF6D0", outline = "" )
+        screen.create_rectangle(0, 0 ,800, 600, fill = chosencolour, outline = "" )
     
 #Update the general accessories like bows, sparkles and heart
 def updateBows(shift, shiftup):
@@ -572,6 +573,18 @@ def finalScreen():
     #Next Screen Button
     screen.create_rectangle(630, 540, 760, 570, fill = "#FAF3E3")
     screen.create_text(695, 555, text = "RESTART", fill ="#FF9195", font = ("Comic Sans MS", 13))
+
+def choose_color():
+    global chosencolour
+    # variable to store hexadecimal code of color
+    color_code = colorchooser.askcolor(title ="Choose color") 
+    chosencolour = color_code[1]
+ 
+    root = Tk()
+    button = Button(root, text = "Select color",
+                    command = choose_color)
+    button.pack()
+    root.withdraw()
 
 
 #Whenever user clicks...
@@ -647,6 +660,7 @@ def mouseClickHandler( event ):
             elif 592 <= xMouse and 657 >= xMouse:
                 colours = [False, False, False, False, True, False]
             elif 672 <= xMouse and 737 >= xMouse:
+                choose_color()
                 colours = [False, False, False, False, False, True]
         elif 630 <= xMouse and 760 >= xMouse and 540 <= yMouse and 570 >= yMouse:
             finaldisplayScreen = True
